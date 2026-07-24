@@ -104,7 +104,7 @@ export const CategoriesFallback = () => {
   return (
     <div id="categories-fallback">
       <h4>Top Categories</h4>
-      <DataTable
+      <Datatable
         data={dummyData}
         columns={columns as never}
         rowKey={(item: any) => item.id}
