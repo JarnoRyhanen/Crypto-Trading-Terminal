@@ -5,13 +5,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { cn, formatCurrency } from '@/lib/utils';
 import { TrendingDown, TrendingUp } from 'lucide-react';
+import { TrendingCoinsFallback } from '@/components/home/fallback';
 
 const TrendingCoins = async () => {
-  const trendingCoins = await fetcher<{ coins: TrendingCoin[] }>(
-    '/search/trending',
-    undefined,
-    300
-  );
+  let trendingCoins;
+
+  try {
+    trendingCoins = await fetcher<{ coins: TrendingCoin[] }>('/search/trending', undefined, 300);
+  } catch (error) {
+    console.error('Failed to fetch trending coins', error);
+    return <TrendingCoinsFallback />;
+  }
 
   const columns: DataTableColumn<TrendingCoin>[] = [
     {
@@ -58,16 +62,14 @@ const TrendingCoins = async () => {
   return (
     <div id="trending-coins">
       <h4>Trending Coins</h4>
-      <div id="trending-coins">
-        <Datatable
-          columns={columns}
-          data={trendingCoins.coins}
-          rowKey={(coin) => coin.item.id}
-          tableClassName="trending-coins-table"
-          headerCellClassName="py-3"
-          bodyCellClassName="py-2"
-        />
-      </div>
+      <Datatable
+        columns={columns}
+        data={trendingCoins.coins}
+        rowKey={(coin) => coin.item.id}
+        tableClassName="trending-coins-table"
+        headerCellClassName="py-3"
+        bodyCellClassName="py-2"
+      />
     </div>
   );
 };
