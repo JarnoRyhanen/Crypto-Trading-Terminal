@@ -13,11 +13,11 @@ const Datatable = <T,>({
   data,
   rowKey,
   tableClassName,
+  headerClassName,
   headerRowClassName,
   headerCellClassName,
   bodyRowClassName,
   bodyCellClassName,
-  headerClassName,
 }: DataTableProps<T>) => {
   return (
     <Table className={cn('custom-scrollbar', tableClassName)}>
@@ -28,7 +28,8 @@ const Datatable = <T,>({
               key={i}
               className={cn(
                 'bg-dark-400 py-4 text-purple-100 first:pl-5 last:pr-5',
-                headerCellClassName
+                headerCellClassName,
+                column.headClassName
               )}
             >
               {column.header}
@@ -50,7 +51,7 @@ const Datatable = <T,>({
             {columns.map((column, columnIndex) => (
               <TableCell
                 key={columnIndex}
-                className={cn('py-4 first:pl-4 last:pr-4', bodyCellClassName)}
+                className={cn('py-4 first:pl-5 last:pr-5', bodyCellClassName, column.cellClassName)}
               >
                 {column.cell(row, rowIndex)}
               </TableCell>

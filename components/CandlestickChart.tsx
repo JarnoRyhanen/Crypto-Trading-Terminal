@@ -9,7 +9,7 @@ const CandlestickChart = ({
   children,
   data,
   coinId,
-  height = 300,
+  height = 360,
   initialPeriod = 'daily',
 }: CandlestickChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
@@ -94,9 +94,9 @@ const CandlestickChart = ({
     <div id="candlestick-chart">
       <div className="chart-header">
         <div className="flex-1">{children}</div>
+
         <div className="button-group">
           <span className="mx-2 text-sm font-medium text-purple-100/50">Period:</span>
-
           {PERIOD_BUTTONS.map(({ value, label }) => (
             <button
               key={value}
@@ -109,6 +109,7 @@ const CandlestickChart = ({
           ))}
         </div>
       </div>
+
       <div ref={chartContainerRef} className="chart" style={{ height }} />
     </div>
   );
