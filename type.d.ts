@@ -9,12 +9,10 @@ interface CandlestickChartProps {
   data?: OHLCData[];
   liveOhlcv?: OHLCData | null;
   coinId: string;
-  height?: number;
+  height?: any;
   children?: React.ReactNode;
   mode?: 'historical' | 'live';
   initialPeriod?: Period;
-  liveInterval: '1s' | '1m';
-  setLiveInterval: (interval: '1s' | '1m') => void;
 }
 
 interface ConverterProps {
@@ -142,6 +140,15 @@ interface Trade {
   value?: number;
 }
 
+interface DemoTradeData {
+  attributes: {
+    kind: string;
+    block_timestamp: string;
+    to_token_amount: string;
+    price_from_in_usd: string;
+  };
+}
+
 interface ExtendedPriceData {
   usd: number;
   coin?: string;
@@ -224,7 +231,7 @@ interface CoinDetailsData {
 
 interface LiveDataProps {
   coinId: string;
-  poolId: string;
+  pool: PoolData;
   coin: CoinDetailsData;
   coinOHLCData?: OHLCData[];
   children?: React.ReactNode;
