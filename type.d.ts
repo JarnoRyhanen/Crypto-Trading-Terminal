@@ -240,8 +240,7 @@ interface LiveDataProps {
 interface LiveCoinHeaderProps {
   name: string;
   image: string;
-  livePrice?: number;
-  livePriceChangePercentage24h: number;
+  currentPrice: number;
   priceChangePercentage30d: number;
   priceChange24h: number;
 }

@@ -4,6 +4,7 @@ import { Separator } from '@/components/ui/separator';
 import CandlestickChart from '@/components/CandlestickChart';
 import { formatCurrency, timeAgo } from '@/lib/utils';
 import Datatable from '@/components/Datatable';
+import CoinHeader from '@/components/CoinHeader';
 
 const LiveDataWrapper = ({ children, coinId, pool, coin, coinOHLCData }: LiveDataProps) => {
   const tradeColumns: DataTableColumn<Trade>[] = [
@@ -48,7 +49,13 @@ const LiveDataWrapper = ({ children, coinId, pool, coin, coinOHLCData }: LiveDat
 
   return (
     <section id="live-data-wrapper">
-      <p>Coin Header</p>
+      <CoinHeader
+        name={coin.name}
+        currentPrice={coin.market_data.current_price.usd}
+        image={coin.image.large}
+        priceChangePercentage30d={coin.market_data.price_change_percentage_30d_in_currency.usd}
+        priceChange24h={coin.market_data.price_change_percentage_24h_in_currency.usd}
+      />
       <Separator className="divider" />
 
       <div className="trend">
