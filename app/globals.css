@@ -201,6 +201,18 @@
                     @apply max-sm:hidden;
                 }
             }
+
+            .attribution {
+                @apply flex items-center justify-end;
+
+                p {
+                    @apply m-0 text-xs text-purple-100;
+
+                    .coingecko-link {
+                        @apply font-semibold text-blue-400 transition-colors hover:text-green-400;
+                    }
+                }
+            }
         }
     }
 

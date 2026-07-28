@@ -141,11 +141,22 @@ interface Trade {
 }
 
 interface DemoTradeData {
-  attributes: {
-    kind: string;
-    block_timestamp: string;
-    to_token_amount: string;
-    price_from_in_usd: string;
+  data: {
+    map(
+      arg0: (trade: any) => {
+        price: number;
+        amount: number;
+        value: number;
+        type: string;
+        timestamp: number;
+      }
+    ): Trade[];
+    attributes: {
+      kind: string;
+      block_timestamp: string;
+      to_token_amount: string;
+      price_from_in_usd: string;
+    };
   };
 }
 
@@ -233,6 +244,8 @@ interface LiveDataProps {
   coinId: string;
   pool: PoolData;
   coin: CoinDetailsData;
+  address?: string;
+  network?: string;
   coinOHLCData?: OHLCData[];
   children?: React.ReactNode;
 }
@@ -321,4 +334,7 @@ interface PoolData {
   address: string;
   name: string;
   network: string;
+  attributes: {
+    address: string;
+  };
 }

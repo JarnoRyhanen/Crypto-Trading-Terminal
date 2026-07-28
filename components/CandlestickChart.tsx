@@ -9,7 +9,7 @@ const CandlestickChart = ({
   children,
   data,
   coinId,
-  height = 360,
+  height = 700,
   initialPeriod = 'daily',
 }: CandlestickChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
@@ -54,6 +54,7 @@ const CandlestickChart = ({
     const chart = createChart(container, {
       ...getChartConfig(height, showTime),
       width: container.clientWidth,
+      height: container.clientHeight,
     });
 
     const series = chart.addSeries(CandlestickSeries, getCandlestickConfig());
@@ -68,7 +69,10 @@ const CandlestickChart = ({
 
     const observer = new ResizeObserver((entries) => {
       if (!entries.length) return;
-      chart.applyOptions({ width: entries[0].contentRect.width });
+      chart.applyOptions({
+        width: entries[0].contentRect.width,
+        height: entries[0].contentRect.height,
+      });
     });
     observer.observe(container);
 

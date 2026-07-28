@@ -48,6 +48,9 @@ export async function getPools(
     address: '',
     name: '',
     network: '',
+    attributes: {
+      address: '',
+    },
   };
 
   if (network && contractAddress) {

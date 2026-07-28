@@ -28,7 +28,6 @@ const Page = async ({ params }: NextPageProps) => {
   const contractAddress = platform?.contract_address || null;
 
   const pool = await getPools(id, network, contractAddress);
-  console.log(pool);
 
   const coinDetails = [
     {
@@ -66,7 +65,13 @@ const Page = async ({ params }: NextPageProps) => {
   return (
     <main id="coin-details-page">
       <section className="primary">
-        <LiveDataWrapper coinId={id} pool={pool} coin={coinData} coinOHLCData={coinOHLCData}>
+        <LiveDataWrapper
+          coinId={id}
+          network={network || ''}
+          pool={pool}
+          coin={coinData}
+          coinOHLCData={coinOHLCData}
+        >
           <h4>Exchange listings</h4>
         </LiveDataWrapper>
       </section>
@@ -100,8 +105,6 @@ const Page = async ({ params }: NextPageProps) => {
             ))}
           </ul>
         </div>
-
-        <p>Top gainers and losers</p>
       </section>
     </main>
   );

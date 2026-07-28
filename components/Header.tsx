@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import Attribution from '@/components/Attribution';
 
 const Header = () => {
   const pathName = usePathname();
@@ -26,9 +27,6 @@ const Header = () => {
           >
             Home
           </Link>
-
-          <p>Search Modal</p>
-
           <Link
             href="/coins"
             className={cn('nav-link', {
@@ -39,6 +37,7 @@ const Header = () => {
             All Coins
           </Link>
         </nav>
+        <Attribution />
       </div>
     </header>
   );
